@@ -26,7 +26,7 @@ class Atraccion:
                 break
         return procesados
 
-    def _repr_(self):
+    def __repr__(self):
         return f"{self.nombre} (capacidad {self.capacidad}) - En espera: {self.visitantes}"
 
 
@@ -54,6 +54,7 @@ class Parque:
     def agregar_visitante(self, tipo, nombre):
         if self.atracciones.is_empty():
             return "No hay atracciones en el parque."
+        
         visitante = Visitante(tipo, nombre)
         primera = self.atracciones.dequeue()
         primera.agregar_visitante(visitante)
@@ -82,14 +83,6 @@ class Parque:
       self.atracciones.enqueue(atr)
 
       return reporte
-
-      while not aux.is_empty():
-          self.atracciones.enqueue(aux.dequeue())
-
-      salida = ""
-      while not reporte.is_empty():
-          salida += reporte.dequeue() + "\n"
-      return salida.strip()
 
     def estado(self):
         if self.atracciones.is_empty():
